@@ -1,11 +1,6 @@
 
-CREATE SCHEMA SE2222;
-USE SE2222;
-
--- 1. Definitions:
--- (15 points)
--- All table definitions of your project including any constraints
--- Before each table creation give a short explanation of the table
+CREATE SCHEMA SE;
+USE SE;
 
 -- It stores the nationalities of the players.
 create table Nationality (
@@ -101,7 +96,7 @@ create table Scores (
 	primary key (ScoresID)
 );
 
--- It stores track of which player played in which team in which game and scored in the minute of the game..
+-- It stores track of which player played in which team in which game and scored in the minute of the game.
 create table TeamLeagueSeason (
 	TeamLeagueSeasonID int not null auto_increment,
 	TeamID int not null references team(TeamID),
@@ -110,9 +105,7 @@ create table TeamLeagueSeason (
 	primary key (TeamLeagueSeasonID)
 );
 
--- 2. Insertions(Data manipulation):
--- (15 points)
--- For each table, add enough number of rows to make your queries in step three to produce meaningful result sets.
+Insertions(Data manipulation):
 
 insert into Nationality(NationalityName) VALUES
 ('GB'), ('TR'),('IT'),('DE'),('FR'),('SP'),('PL'),('BR'),('A'),('RCH'),('P'),('ET'),('ROU'),('HR'),
@@ -238,10 +231,7 @@ insert into Scores (GameID, PlayerID, TeamID, minutes) values
 (12,26,12,78),
 (12,27,12,82);
  
--- 3. Queries:
--- (15 points)
--- Write 5 queries with explanations 
--- Write 5 queries. Your queries should do a task that is meaningful in your selected context (project topic). 
+Queries:
 
 -- In this query, I printed the names and positions of the players whose ID is less than the data coming from the subquery by adding a alias
 select firstName as Name, lastName as Surname, positionName as Role
@@ -272,8 +262,3 @@ update game set gameDate = '2020-11-8'
 where gameID = (select min(scoresID) 
 				from scores 
 				where scores.gameID = game.GameID);
-
-
-
-
-
